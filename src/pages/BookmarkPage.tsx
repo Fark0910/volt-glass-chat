@@ -1,20 +1,25 @@
-
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import { useBookmarks } from '../contexts/BookmarkContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '../components/ui/dialog';
-import { Eye, Trash2, BookmarkIcon } from 'lucide-react';
+import { Eye, Trash2, BookmarkIcon, Home } from 'lucide-react';
 import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 const BookmarkPage: React.FC = () => {
   const { bookmarks, removeBookmark } = useBookmarks();
   const [selectedBookmark, setSelectedBookmark] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const handleRemoveBookmark = (id: string) => {
     removeBookmark(id);
     toast.success('Bookmark removed');
+  };
+
+  const handleHomeNavigation = () => {
+    navigate('/');
   };
 
   const selectedBookmarkData = bookmarks.find(b => b.id === selectedBookmark);
@@ -24,13 +29,24 @@ const BookmarkPage: React.FC = () => {
       <Navbar />
       
       <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            My Bookmarks
-          </h1>
-          <p className="text-muted-foreground">
-            Your saved electronics learning materials
-          </p>
+        <div className="mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              My Bookmarks
+            </h1>
+            <p className="text-muted-foreground">
+              Your saved electronics learning materials
+            </p>
+          </div>
+          
+          {/* Home Button */}
+          <Button
+            onClick={handleHomeNavigation}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+          >
+            <Home className="w-4 h-4 mr-2" />
+            Go to Home
+          </Button>
         </div>
 
         {bookmarks.length === 0 ? (

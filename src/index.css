@@ -74,9 +74,11 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 217 91% 60%;
 
-    /* Dark mode electronics theme */
-    --glass-bg: 0 0% 0% / 0.4;
-    --glass-border: 255 255% 255% / 0.1;
+    /* Dark mode electronics theme - lighter for better visibility */
+    --background: 225 6% 13%;
+    --foreground: 210 40% 98%;
+    --glass-bg: 255 255% 255% / 0.1;
+    --glass-border: 255 255% 255% / 0.2;
   }
 }
 
@@ -92,13 +94,51 @@
   }
 
   .dark body {
-    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(217 91% 60% / 0.1) 100%);
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(217 91% 60% / 0.15) 100%);
   }
 }
 
 @layer components {
   .glass-card {
     @apply backdrop-blur-sm bg-white/80 dark:bg-black/40 border border-white/20 dark:border-white/10 rounded-2xl shadow-xl;
+  }
+
+  /* Apple-style Liquid Glass Components */
+  .liquid-glass-card {
+    @apply backdrop-blur-xl bg-white/30 dark:bg-white/10 border border-white/20 dark:border-white/20 rounded-3xl shadow-2xl;
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.1) 0%, 
+      rgba(255, 255, 255, 0.05) 100%);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .liquid-glass-input {
+    @apply backdrop-blur-md bg-white/20 dark:bg-white/10 border border-white/30 dark:border-white/20 rounded-xl text-foreground placeholder:text-muted-foreground focus:bg-white/30 dark:focus:bg-white/15 transition-all duration-300;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .liquid-glass-button {
+    @apply bg-gradient-to-r from-blue-500/80 to-purple-600/80 backdrop-blur-md border border-white/20 rounded-xl text-white font-medium transition-all duration-300 hover:from-blue-600/90 hover:to-purple-700/90 hover:scale-105;
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .liquid-glass-tabs {
+    @apply backdrop-blur-md bg-white/20 dark:bg-white/10 border border-white/20 dark:border-white/20 rounded-xl p-1;
+  }
+
+  .liquid-glass-tab {
+    @apply backdrop-blur-sm bg-transparent border-0 rounded-lg text-foreground transition-all duration-300 data-[state=active]:bg-white/30 dark:data-[state=active]:bg-white/20 data-[state=active]:shadow-lg;
+  }
+
+  .liquid-glass-btn {
+    @apply backdrop-blur-md bg-white/20 dark:bg-white/10 border border-white/30 dark:border-white/20 rounded-full p-3 hover:bg-white/30 dark:hover:bg-white/20 transition-all duration-300 hover:scale-110;
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
   .bubble-btn {

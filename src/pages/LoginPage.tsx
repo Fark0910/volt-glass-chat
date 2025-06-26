@@ -45,7 +45,7 @@ const LoginPage: React.FC = () => {
       {/* Theme Toggle */}
       <button
         onClick={toggleTheme}
-        className="absolute top-6 right-6 bubble-btn z-10"
+        className="absolute top-6 right-6 liquid-glass-btn z-10"
         aria-label="Toggle theme"
       >
         {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
@@ -65,24 +65,24 @@ const LoginPage: React.FC = () => {
           </p>
         </div>
 
-        <Card className="glass-card animate-fade-in">
+        <Card className="liquid-glass-card animate-fade-in">
           <CardHeader className="text-center">
-            <CardTitle>Welcome</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-foreground">Welcome</CardTitle>
+            <CardDescription className="text-muted-foreground">
               Sign in to your account or create a new one
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="login" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-6">
-                <TabsTrigger value="login">Login</TabsTrigger>
-                <TabsTrigger value="signup">Sign Up</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 mb-6 liquid-glass-tabs">
+                <TabsTrigger value="login" className="liquid-glass-tab">Login</TabsTrigger>
+                <TabsTrigger value="signup" className="liquid-glass-tab">Sign Up</TabsTrigger>
               </TabsList>
               
               <TabsContent value="login">
                 <form onSubmit={handleLogin} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="login-email">Email</Label>
+                    <Label htmlFor="login-email" className="text-foreground">Email</Label>
                     <Input
                       id="login-email"
                       type="email"
@@ -90,11 +90,11 @@ const LoginPage: React.FC = () => {
                       value={loginData.email}
                       onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
                       required
-                      className="bg-white/50 dark:bg-black/50"
+                      className="liquid-glass-input"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="login-password">Password</Label>
+                    <Label htmlFor="login-password" className="text-foreground">Password</Label>
                     <Input
                       id="login-password"
                       type="password"
@@ -102,12 +102,12 @@ const LoginPage: React.FC = () => {
                       value={loginData.password}
                       onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
                       required
-                      className="bg-white/50 dark:bg-black/50"
+                      className="liquid-glass-input"
                     />
                   </div>
                   <Button 
                     type="submit" 
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                    className="w-full liquid-glass-button"
                     disabled={isLoading}
                   >
                     {isLoading ? 'Signing in...' : 'Sign In'}
@@ -118,7 +118,7 @@ const LoginPage: React.FC = () => {
               <TabsContent value="signup">
                 <form onSubmit={handleSignup} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="signup-name">Name</Label>
+                    <Label htmlFor="signup-name" className="text-foreground">Name</Label>
                     <Input
                       id="signup-name"
                       type="text"
@@ -126,11 +126,11 @@ const LoginPage: React.FC = () => {
                       value={signupData.name}
                       onChange={(e) => setSignupData({ ...signupData, name: e.target.value })}
                       required
-                      className="bg-white/50 dark:bg-black/50"
+                      className="liquid-glass-input"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signup-email">Email</Label>
+                    <Label htmlFor="signup-email" className="text-foreground">Email</Label>
                     <Input
                       id="signup-email"
                       type="email"
@@ -138,11 +138,11 @@ const LoginPage: React.FC = () => {
                       value={signupData.email}
                       onChange={(e) => setSignupData({ ...signupData, email: e.target.value })}
                       required
-                      className="bg-white/50 dark:bg-black/50"
+                      className="liquid-glass-input"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signup-password">Password</Label>
+                    <Label htmlFor="signup-password" className="text-foreground">Password</Label>
                     <Input
                       id="signup-password"
                       type="password"
@@ -150,12 +150,12 @@ const LoginPage: React.FC = () => {
                       value={signupData.password}
                       onChange={(e) => setSignupData({ ...signupData, password: e.target.value })}
                       required
-                      className="bg-white/50 dark:bg-black/50"
+                      className="liquid-glass-input"
                     />
                   </div>
                   <Button 
                     type="submit" 
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                    className="w-full liquid-glass-button"
                     disabled={isLoading}
                   >
                     {isLoading ? 'Creating account...' : 'Create Account'}
